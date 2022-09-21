@@ -1,0 +1,108 @@
+ <!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Rate Prediction</title>
+    <style>
+         /* Style the video: 100% width and height to cover the entire window */
+#myVideo { 
+    position: fixed;
+    right: 0;
+    bottom: 0; 
+    min-width: 100%;
+    min-height: 100%;
+  }
+  
+  .content {
+    position: absolute; top: 0; left: 0;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    text-align: center;
+  }
+  
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="static/scene.mp4" type="video/mp4">
+      </video>
+    <div class="content">
+        <form action="https://crime-rate.herokuapp.com/result" method="POST">
+            <h1>Check the Crime Rates</h1> 
+            <h5>(Developed by: Sunday Adeyanju)</h5>
+            <br>
+            <label for="medFamInc">Median Family Income/Poverty: (Scale 1 to 10)</label>
+            <br>
+            <input type="range" min="1" max="10" value="5" class="medFamInc" id="medFamInc" name="medFamInc" onchange="updateFamInc(this.value);">
+            <input type="text" id="medFamInctextInput" value="" readonly maxlength="3" size="1" style="text-align: center;">
+            <br><br>
+            <br>
+            <label for="PctUnemployed">Unemployment/Low self-esteem: (Scale 1 to 10)</label>
+            <br>
+            <input type="range" min="1" max="10" value="5" class="PctUnemployed" id="PctUnemployed" name="PctUnemployed" onchange="updatePctUnemployed(this.value);">
+            <input type="text" id="PctUnemployedtextInput" value="" readonly maxlength="3" size="1" style="text-align: center;">
+            <br><br>
+            <label for="PctIlleg">Intensity of kids born to those who never married/Child Abuse: (Scale 1 to 10)</label>
+            <br>
+            <input type="range" min="1" max="10" value="5" class="PctIlleg" id="PctIlleg" name="PctIlleg" onchange="updatePctIlleg(this.value);">
+            <input type="text" id="PctIllegtextInput" value="" readonly maxlength="3" size="1" style="text-align: center;">
+            <br><br>
+            <label for="PctImmigRecent">Percentage of Immigrants who immigrated recently (3 years): </label>
+            <br>
+            <input type="range" min="1" max="100" value="50" class="PctImmigRecent" id="PctImmigRecent" name="PctImmigRecent" onchange="updatePctImmigRecent(this.value);">
+            <input type="text" id="PctImmigRecenttextInput" value="" readonly maxlength="3" size="1" style="text-align: center;">
+            <br><br>
+            <label for="PctRecentImmig">Percentage of  Domestic Violence: </label>
+            <br>
+            <input type="range" min="1" max="100" value="50" class="PctRecentImmig" id="PctRecentImmig" name="PctRecentImmig" onchange="updatePctRecentImmig(this.value);">
+            <input type="text" id="PctRecentImmigtextInput" value="" readonly maxlength="3" size="1" style="text-align: center;">
+            <br><br>
+            <label for="HousVacant">Intensity of vacant houses: (Scale 1 to 10)</label>
+            <br>
+            <input type="range" min="1" max="10" value="5" class="HousVacant" id="HousVacant" name="HousVacant" onchange="updateHousVacant(this.value);">
+            <input type="text" id="HousVacanttextInput" value="" readonly maxlength="3" size="1" style="text-align: center;">
+            <br><br>
+            <label for="PopDens">How densely populated is the area? (Scale 1 to 10) </label>
+            <br>
+            <input type="range" min="1" max="10" value="5" class="PopDens" id="PopDens" name="PopDens" onchange="updatePopDens(this.value);">
+            <input type="text" id="PopDenstextInput" value="" readonly maxlength="3" size="1" style="text-align: center;">
+            <br><br>          
+            <input type="submit" value="Predict Result">
+        </form>
+    </div>
+</body>
+
+<script>
+    function updateFamInc(val) {
+    document.getElementById('medFamInctextInput').value=val; 
+  }
+  function updatePctUnemployed(val) {
+    document.getElementById('PctUnemployedtextInput').value=val; 
+  }
+  function updatePctIlleg(val) {
+    document.getElementById('PctIllegtextInput').value=val; 
+  }
+  function updatePctImmigRecent(val) {
+    document.getElementById('PctImmigRecenttextInput').value=val; 
+  }
+  function updatePctRecentImmig(val) {
+    document.getElementById('PctRecentImmigtextInput').value=val; 
+  }
+  function updateHousVacant(val) {
+    document.getElementById('HousVacanttextInput').value=val; 
+  }
+  function updatePopDens(val) {
+    document.getElementById('PopDenstextInput').value=val; 
+  }
+</script>
+
+</html>
